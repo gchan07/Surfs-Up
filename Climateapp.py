@@ -49,6 +49,7 @@ def stations():
 # Define what to do when a user hits `/api/v1.0/stations route
 @app.route("/api/v1.0/tobs")
 def tobs():
+    year_ago = dt.date.today() - dt.timedelta(days=365)
     results_tobs = session.query(Measurement.date, Measurement.tobs).\
             filter(Measurement.date > year_ago).\
             order_by(Measurement.date).all()
